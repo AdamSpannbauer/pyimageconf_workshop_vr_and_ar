@@ -307,21 +307,21 @@ class VisualizingTheInvisible(wx.Frame):
         self._save_scene_pending = False
         self._capture_thread.start()
 
-    def _on_close_window(self, event):
+    def _on_close_window(self, _):
         self._running = False
         self._capture_thread.join()
         self.Destroy()
 
-    def _on_quit_command(self, event):
+    def _on_quit_command(self, _):
         self.Close()
 
-    def _on_save_scene_command(self, event):
+    def _on_save_scene_command(self, _):
         self._save_scene_pending = True
 
-    def _on_video_panel_erase_background(self, event):
+    def _on_video_panel_erase_background(self, _):
         pass
 
-    def _on_video_panel_paint(self, event):
+    def _on_video_panel_paint(self, _):
 
         if self._rgb_image is None:
             return
