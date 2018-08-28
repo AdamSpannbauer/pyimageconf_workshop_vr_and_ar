@@ -11,11 +11,6 @@ import cv2
 import numpy
 import wx
 
-try:
-    from PySpinCapture import PySpinCapture
-except ImportError:
-    PySpinCapture = None
-
 __author__ = 'Joseph Howse'
 __copyright__ = 'Copyright (c) 2018, Nummist Media Corporation Limited'
 __credits__ = ['Joseph Howse']
@@ -541,19 +536,12 @@ class VisualizingTheInvisible(wx.Frame):
 
 
 def main():
-    if PySpinCapture is not None:
-        is_monochrome = True
-        capture = PySpinCapture(0, roi=(0, 0, 960, 600), binning_radius=2,
-                                is_monochrome=is_monochrome)
-        diagonal_fov_degrees = 56.1  # 12.5mm lens with 1/1.2" sensor
-        target_fps = 40.0
-    else:
-        capture = cv2.VideoCapture(0)
-        capture.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
-        capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
-        is_monochrome = False
-        diagonal_fov_degrees = 70.0
-        target_fps = 25.0
+    capture = cv2.VideoCapture(0)
+    capture.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
+    capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
+    is_monochrome = False
+    diagonal_fov_degrees = 70.0
+    target_fps = 25.0
 
     app = wx.App()
     frame = VisualizingTheInvisible(capture, is_monochrome, diagonal_fov_degrees,
