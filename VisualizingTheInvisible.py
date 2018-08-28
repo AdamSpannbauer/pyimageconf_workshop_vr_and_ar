@@ -366,6 +366,7 @@ class VisualizingTheInvisible(wx.Frame):
                 self._init_kalman_transition_matrix(fps)
                 wx.CallAfter(self._static_text.SetLabel, 'FPS:  %.1f' % fps)
 
+    # noinspection PyArgumentList
     def _track_object(self):
 
         if self._is_monochrome:
